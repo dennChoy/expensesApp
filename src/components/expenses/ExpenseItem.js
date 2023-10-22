@@ -1,12 +1,21 @@
-function ExpenseItem(){
+import ExpenseDateItem from "./ExpenseDateItem";
+import Card from 'react-bootstrap/Card';
+
+function ExpenseItem(props){
+
     return(
-        <div class="card mt-3 p-3">
+        <Card className="card mt-3 p-3">
             <div className="row">
-                <div className="col"> March 28th 2021</div>
-                <div className="col"><h2>Car Insurenca</h2></div>
-                <div className="col">$212.21</div>
+                <div className="col"> 
+                    <ExpenseDateItem expenseDateItem={props.expenseDate}/>
+                </div>
+                <div className="col-6 p-3"><h2>{props.expenseTitle}</h2></div>
+                <div className="col text-end">
+                    <h1><span className="badge rounded-pill text-bg-info m-4">${props.expenseAmount}</span></h1>
+                </div>
             </div>
-        </div>
+            {props.expense}
+        </Card>
     );
 }
 
