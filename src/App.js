@@ -1,6 +1,7 @@
 import Navbar from "./components/navbar/Navbar";
-import Dashboard from './components/expenses/Dashboard';
+import Dashboard from './components/Dashboard/Dashboard';
 import Expenses from "./components/expenses/Expenses";
+import NewExpenseForm from "./components/modal/NewExpenseForm";
 
 function App() {
 
@@ -11,11 +12,26 @@ function App() {
     { id: 'e4', title: 'Spotify', amount: 54, date: new Date(2023, 7, 3) },
   ];
 
+  const addExpenseHandler = expense => {
+    console.log('from app.js');
+    const newExpense={
+      id:Math.random().toString(),
+      ...expense
+    }
+    expensesList.push(newExpense)
+    console.log(expensesList);
+  }
+
+  const changeFilterHandler = year => {
+    console.log(year);
+  }
+
   return (
     <div className="App">
       <Navbar />
       <div className="container">
-        <Dashboard />
+        <Dashboard changeYear={changeFilterHandler} />
+        <NewExpenseForm addExpense={addExpenseHandler} />
         <Expenses expensesList={expensesList}/>
       </div>
     </div>
